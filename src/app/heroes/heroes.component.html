@@ -1,0 +1,38 @@
+<h2> {{ hero.name }} Details</h2>
+<div><span>id: {{ hero.id }}</span></div>
+<div><span>name: {{ hero.name }}</span></div>
+
+<ul>
+  <li *ngFor="let hero of heroes">
+    <span>{{hero.id}}: </span> {{hero.name}}
+  </li>
+</ul>
+<!--<div>
+  <button [disabled]="isSpecial">propery binding button</button>
+</div>
+
+<div>
+  <div [class.special]="isSpecial">class binding button</div>
+</div>
+
+<div>
+  <button [style.color]="isSpecial ? 'red' : 'green'">style binding button</button>
+</div>
+<div>
+  <button [style.text-decoration]="isSpecial ? 'underline' : 'none'">style binding button</button>
+</div>
+<div>
+  <button [style.textDecoration]="isSpecial ? 'underline' : 'none'">style binding button</button>
+</div>
+
+<div>
+  <button (click)="onSave($event)">event binding</button>
+</div>
+
+&lt;!&ndash; two way binding - app.module.ts 에서 FormsModule 추가 &ndash;&gt;
+<div>
+  <label>
+    name:
+    <input [(ngModel)]="hero.name" placeholder="이름" />
+  </label>
+</div>-->
