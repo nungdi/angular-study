@@ -12,7 +12,7 @@ export class HeroesComponent implements OnInit {
 
   // 리터럴 객체로 객체 생성
   // hero: Hero = {
-  //   id: 1,
+  //   hero_id: 1,
   //   name: 'Winstorm'
   // }
 
@@ -24,7 +24,7 @@ export class HeroesComponent implements OnInit {
   constructor(private heroService: HeroService) {
     // new로 객체 생성
     this.hero = new Hero(1, 'Winstorm');
-    // this.hero.id = 1;
+    // this.hero.hero_id = 1;
     // this.hero.name = 'Winstorm';
 
     this.isSpecial = true;
@@ -36,7 +36,7 @@ export class HeroesComponent implements OnInit {
     // 자식이 보내온
     this.heroService.refresh$
       .subscribe(hero_id => {
-        this.selectedHero = HEROES.find(item => item.id === hero_id);
+        this.selectedHero = HEROES.find(item => item.hero_id === hero_id);
       });
   }
 

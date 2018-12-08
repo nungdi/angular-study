@@ -1,13 +1,13 @@
 <!--<h2> {{ hero.name }} Details</h2>
-<div><span>id: {{ hero.id }}</span></div>
+<div><span>hero_id: {{ hero.hero_id }}</span></div>
 <div><span>name: {{ hero.name }}</span></div>-->
 
 <router-outlet></router-outlet>
 
 <h2>My Heroes</h2>
 <ul>
-  <li class="d-flex m-1" *ngFor="let hero of heroes" routerLink="/detail/{{hero.id}}" [class.selected]="hero===selectedHero" (click)="onSelect()">
-    <span class="rounded-left p-2 bg-primary text-light">{{hero.id}}</span>
+  <li class="d-flex m-1" *ngFor="let hero of heroes" routerLink="/detail/{{hero.hero_id}}" [class.selected]="hero===selectedHero" (click)="onSelect()">
+    <span class="rounded-left p-2 bg-primary text-light">{{hero.hero_id}}</span>
     <div class="rounded-right p-2 bg-light text-dark w-50">{{hero.name}}</div>
   </li>
 </ul>
