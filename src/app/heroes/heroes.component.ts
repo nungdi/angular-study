@@ -18,6 +18,7 @@ export class HeroesComponent implements OnInit {
   hero: Hero;
   isSpecial: boolean;
   heroes = HEROES;
+  selectedHero: Hero;
 
   constructor() {
     // new로 객체 생성
@@ -34,6 +35,10 @@ export class HeroesComponent implements OnInit {
   onSave(e) {
     console.log(e);
     alert('HELL:O');
+  }
+
+  onSelect(hero: Hero): void {
+    this.selectedHero = hero;
   }
 
 }
