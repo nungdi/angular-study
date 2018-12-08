@@ -27,8 +27,8 @@ const routes: Routes = [
   imports: [
     BrowserModule,
     FormsModule,
-    NgbModalModule.forRoot(),
-    RouterModule.forRoot(routes)
+    RouterModule.forRoot(routes),
+    NgbModalModule.forRoot()
   ],
   providers: [],
   bootstrap: [AppComponent]
