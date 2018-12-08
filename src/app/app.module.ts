@@ -5,16 +5,30 @@ import { AppComponent } from './app.component';
 import { HeroesComponent } from './heroes/heroes.component';
 import {FormsModule} from '@angular/forms';
 import { HeroDetailComponent } from './hero-detail/hero-detail.component';
+import { HomeComponent } from './home/home.component';
+import { TodoComponent } from './todo/todo.component';
+import { RouterModule, Routes } from '@angular/router';
+import { NgbModalModule } from '@ng-bootstrap/ng-bootstrap';
+
+const routes: Routes = [
+  {path: '', component: HomeComponent},
+  {path: 'todo', component: TodoComponent},
+  {path: 'heroes', component: HeroesComponent}
+];
 
 @NgModule({
   declarations: [
     AppComponent,
     HeroesComponent,
-    HeroDetailComponent
+    HeroDetailComponent,
+    HomeComponent,
+    TodoComponent
   ],
   imports: [
     BrowserModule,
-    FormsModule
+    FormsModule,
+    NgbModalModule.forRoot(),
+    RouterModule.forRoot(routes)
   ],
   providers: [],
   bootstrap: [AppComponent]
