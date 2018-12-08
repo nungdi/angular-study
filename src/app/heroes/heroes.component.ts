@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import {Hero} from '../hero';
-import {HEROES} from '../mock-heroes';
+import { Hero } from '../hero';
+import { HEROES } from '../mock-heroes';
 import {HeroService} from '../hero.service';
 
 @Component({
@@ -32,6 +32,12 @@ export class HeroesComponent implements OnInit {
     //this.heroes = this.heroService.getHeroes();
     this.heroService.getHeroes()
       .subscribe(data => this.heroes = data);
+
+    // 자식이 보내온
+    this.heroService.refresh$
+      .subscribe(hero_id => {
+        this.selectedHero = HEROES.find(item => item.id === hero_id);
+      });
   }
 
   ngOnInit() {

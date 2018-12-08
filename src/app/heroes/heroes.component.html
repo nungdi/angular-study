@@ -2,15 +2,17 @@
 <div><span>id: {{ hero.id }}</span></div>
 <div><span>name: {{ hero.name }}</span></div>-->
 
+<router-outlet></router-outlet>
+
 <h2>My Heroes</h2>
 <ul>
-  <li class="d-flex m-1" *ngFor="let hero of heroes" (click)="onSelect(hero)" [class.selected]="hero===selectedHero">
+  <li class="d-flex m-1" *ngFor="let hero of heroes" routerLink="/detail/{{hero.id}}" [class.selected]="hero===selectedHero" (click)="onSelect()">
     <span class="rounded-left p-2 bg-primary text-light">{{hero.id}}</span>
     <div class="rounded-right p-2 bg-light text-dark w-50">{{hero.name}}</div>
   </li>
 </ul>
 
-<app-hero-detail [childHero]="selectedHero"></app-hero-detail>
+<!--<app-hero-detail [childHero]="selectedHero"></app-hero-detail>-->
 
 <!--<div>
   <button [disabled]="isSpecial">propery binding button</button>
