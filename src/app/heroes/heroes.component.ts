@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {Hero} from '../hero';
 import {HEROES} from '../mock-heroes';
+import {HeroService} from '../hero.service';
 
 @Component({
   selector: 'app-heroes',
@@ -17,16 +18,20 @@ export class HeroesComponent implements OnInit {
 
   hero: Hero;
   isSpecial: boolean;
-  heroes = HEROES;
+  heroes: Hero[];
   selectedHero: Hero;
 
-  constructor() {
+  constructor(private heroService: HeroService) {
     // new로 객체 생성
     this.hero = new Hero(1, 'Winstorm');
     // this.hero.id = 1;
     // this.hero.name = 'Winstorm';
 
     this.isSpecial = true;
+
+    //this.heroes = this.heroService.getHeroes();
+    this.heroService.getHeroes()
+      .subscribe(data => this.heroes = data);
   }
 
   ngOnInit() {
