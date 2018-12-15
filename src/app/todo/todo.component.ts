@@ -42,6 +42,18 @@ export class TodoComponent implements OnInit {
     const tempTodo = Object.assign({}, todo);
     this.tempMap.set(todo.todo_id, tempTodo);
   }
+  remove(todo_id: number) {
+    if (confirm('삭제하시겠습니까?')) {
+      this.heroService.removeTodo(todo_id)
+        .subscribe(body => {
+          if (body.result === 0) {
+            // todo_id가 들어간 객체를 삭제.
+            const idx = this.todoList.findIndex(item => item.todo_id === todo_id);
+            this.todoList.splice(idx, 1);
+          }
+        });
+    }
+  }
   save(todo: TodoVo) {
     this.heroService.saveTodo(todo)
       .subscribe(body => {
