@@ -33,18 +33,23 @@
       <td>{{todo.created}}</td>
       <td>{{todo.updated}}</td>
       <td>
-        <button class="btn btn-success btn-sm ml-1">수정</button>
+        <button class="btn btn-success btn-sm ml-1" (click)="modify(todo)">수정</button>
         <button class="btn btn-danger btn-sm ml-1">삭제</button>
       </td>
     </tr>
     <!-- // 일반 템플릿 -->
     <tr *ngIf="todo.isEdited">
-      <td>{{todo.isFinished ? '완료' : '미완료'}}</td>
-      <td>{{todo.todo}}</td>
+      <td>
+        <input type="checkbox" [(ngModel)]="todo.isFinished" />
+      </td>
+      <td>
+        <input type="text" [(ngModel)]="todo.todo" />
+      </td>
       <td>{{todo.created}}</td>
       <td>{{todo.updated}}</td>
       <td>
-        <button class="btn btn-danger btn-sm ml-1">삭제</button>
+        <button class="btn btn-info btn-sm ml-1">저장</button>
+        <button class="btn btn-warning btn-sm ml-1" (click)="restore(todo)">취소</button>
       </td>
     </tr>
     <!-- // 수정 템플릿 -->
