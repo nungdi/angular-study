@@ -11,6 +11,7 @@ import { TodoComponent } from './todo/todo.component';
 import { RouterModule, Routes } from '@angular/router';
 import { HttpClientModule } from '@angular/common/http';
 import { JqueryComponent } from './jquery/jquery.component';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 const routes: Routes = [
   {path: '', component: HomeComponent},
@@ -37,6 +38,7 @@ const routes: Routes = [
     FormsModule,
     RouterModule.forRoot(routes),
     HttpClientModule,
+    NgbModule // bootstrap 모듈
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -7,6 +7,7 @@ import {HttpClient, HttpHeaders} from '@angular/common/http';
 import { environment } from '../environments/environment';
 import { TodoVo } from './domain/todo.vo';
 import {ResultVo} from './domain/result.vo';
+import {PageVo} from './domain/page.vo';
 
 @Injectable({
   providedIn: 'root'
@@ -34,6 +35,10 @@ export class HeroService {
 
   getTodoList(): Observable<TodoVo[]> {
     return this.http.get<TodoVo[]>(`${environment.HOST}/api/todo`);
+  }
+
+  getPagedTodoList(start_index: number, page_size: number): Observable<ResultVo> {
+    return this.http.get<ResultVo>(`${environment.HOST}/api/paged_todo?start_index=${start_index}&page_size=${page_size}`);
   }
 
   addTodo(todovo: TodoVo): Observable<TodoVo> {

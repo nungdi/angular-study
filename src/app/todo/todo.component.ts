@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { HeroService } from '../hero.service';
 import { TodoVo } from '../domain/todo.vo';
+import {PageVo} from '../domain/page.vo';
 
 @Component({
   selector: 'app-todo',
@@ -13,13 +14,30 @@ export class TodoComponent implements OnInit {
   // 수정시 기존값을 저장 할 수 있는 컬렉션 생성
   tempMap = new Map<number, TodoVo>();
 
-  constructor(private heroService: HeroService) { }
+  page: PageVo;
+
+  constructor(private heroService: HeroService) {
+    this.page = new PageVo(1, 5, 0);
+  }
 
   ngOnInit() {
+    this.getTodoList();
+  }
+  
+  getTodoList() {
+    /*
     this.heroService.getTodoList()
       .subscribe(body => {
         console.log(body);
         this.todoList = body;
+      });
+    */
+    const start_index = this.page.pageSize * (this.page.pageIndex - 1);
+    this.heroService.getPagedTodoList(start_index, this.page.pageSize)
+      .subscribe(body => {
+        console.log(body, start_index);
+        this.todoList = body.data;
+        this.page.totalCount = body.total;
       });
   }
 
@@ -71,5 +89,11 @@ export class TodoComponent implements OnInit {
     Object.assign(todo, tempTodo);
 
     todo.isEdited = false;
+  }
+
+  pageChanged(event: any) {
+    console.log(event);
+    // 페이지 리프레쉬
+    this.getTodoList();
   }
 }

@@ -4,13 +4,13 @@
       <div class="form-group">
         <input type="text" class="form-control" placeholder="할일을 입력하세요." [(ngModel)]="newTodo.todo"
                name="todo" #todo="ngModel" required />
-        <div [hidden]="!todo.touched || todo.valid" class="alert alert-danger"> <!-- touched: input에 fouseout 되었을 때 dirty: input에 입력되었다가 지워졌을 때 -->
+        <div [hidden]="!todo.touched" class="alert alert-danger"> <!-- touched: input에 fouseout 되었을 때 dirty: input에 입력되었다가 지워졌을 때 -->
           할일을 입력해주세요 >ㅁ<
         </div>
       </div>
     </div>
     <div class="col-sm-4">
-      <button type="submit" class="btn btn-primary btn-block" (click)="addTodo()" [disabled]="!myForm.form.valid">추가</button>
+      <button type="submit" class="btn btn-primary btn-block" [disabled]="!myForm.form.valid">추가</button>
     </div>
   </div>
 </form>
@@ -56,3 +56,13 @@
   </ng-template>
   </tbody>
 </table>
+<ngb-pagination class="d-flex justify-content-center"
+                [collectionSize]="page.totalCount"
+                [maxSize]="5"
+                [pageSize]="page.pageSize"
+                [rotate]="true"
+                [ellipses]="false"
+                [boundaryLinks]="false"
+                [(page)]="page.pageIndex"
+                (pageChange)="pageChanged($event)">
+</ngb-pagination>
