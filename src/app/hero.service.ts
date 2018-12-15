@@ -13,8 +13,12 @@ import { TodoVo } from './domain/todo.vo';
 export class HeroService {
   refresh = new Subject<number>(); // publisher
   refresh$ = this.refresh.asObservable(); // subscriber
+  headers: HttpHeaders;
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient) {
+    this.headers = new HttpHeaders();
+    this.headers.append('Content-Type', 'application/json');
+  }
 
   getHeroes(): Observable<Hero[]> {
     return this.http.get<Hero[]>(`${environment.HOST}/api/heroes`);
@@ -32,8 +36,10 @@ export class HeroService {
   }
 
   addTodo(todovo: TodoVo): Observable<TodoVo> {
-    const headers = new HttpHeaders();
-    headers.append('Content-Type', 'application/json');
-    return this.http.post<TodoVo>(`${environment.HOST}/api/todo`, todovo, {headers: headers});
+    return this.http.post<TodoVo>(`${environment.HOST}/api/todo`, todovo, {headers: this.headers});
+  }
+
+  saveTodo(todovo: TodoVo): Observable<TodoVo> {
+    return this.http.put<TodoVo>(`${environment.HOST}/api/todo`, todovo, {headers: this.headers});
   }
 }

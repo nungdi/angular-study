@@ -42,6 +42,17 @@ export class TodoComponent implements OnInit {
     const tempTodo = Object.assign({}, todo);
     this.tempMap.set(todo.todo_id, tempTodo);
   }
+  save(todo: TodoVo) {
+    this.heroService.saveTodo(todo)
+      .subscribe(body => {
+        // todo = body 로 메모리 주소를 복사하는 것은 for 루프 에서 참조값을 바꾸는 것이기 때문에 지양해야 함.
+        // 기존 객체에 새로운 객체의 퍼라퍼티를 복사한다.
+        Object.assign(todo, body);
+
+        // 템플릿 전환
+        todo.isEdited = false;
+      });
+  }
   restore(todo: TodoVo) {
     // 복원
     const tempTodo = this.tempMap.get(todo.todo_id);
