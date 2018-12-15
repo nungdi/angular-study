@@ -1,12 +1,12 @@
-<!--<h2> {{ hero.name }} Details</h2>
-<div><span>hero_id: {{ hero.hero_id }}</span></div>
-<div><span>name: {{ hero.name }}</span></div>-->
-
 <router-outlet></router-outlet>
 
 <h2>My Heroes</h2>
+<!--<div><span>hero_id: </span>{{hero.hero_id}}</div>
+<div><span>name: </span>{{hero.name}}</div>-->
+
 <ul>
-  <li class="d-flex m-1" *ngFor="let hero of heroes" routerLink="/detail/{{hero.hero_id}}" [class.selected]="hero===selectedHero" (click)="onSelect()">
+  <li class="d-flex m-1" *ngFor="let hero of heroes" routerLink="/heroes/{{hero.hero_id}}"
+    [class.selected]="hero===selectedHero" (click)="onSelect(hero)">
     <span class="rounded-left p-2 bg-primary text-light">{{hero.hero_id}}</span>
     <div class="rounded-right p-2 bg-light text-dark w-50">{{hero.name}}</div>
   </li>
@@ -25,21 +25,14 @@
 <div>
   <button [style.color]="isSpecial ? 'red' : 'green'">style binding button</button>
 </div>
-<div>
-  <button [style.text-decoration]="isSpecial ? 'underline' : 'none'">style binding button</button>
-</div>
-<div>
-  <button [style.textDecoration]="isSpecial ? 'underline' : 'none'">style binding button</button>
-</div>
 
 <div>
   <button (click)="onSave($event)">event binding</button>
 </div>
 
-&lt;!&ndash; two way binding - app.module.ts 에서 FormsModule 추가 &ndash;&gt;
 <div>
-  <label>
-    name:
-    <input [(ngModel)]="hero.name" placeholder="이름" />
-  </label>
-</div>-->
+  <label>name</label>
+  <input [(ngModel)]="hero.name" placeholder="이름">
+</div>
+
+<span [style.textDecoration]="isSpecial ? 'line-through' : 'none'">fighting</span>-->

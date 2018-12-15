@@ -1,7 +1,8 @@
-import { Component, OnInit } from '@angular/core';
-import { Hero } from '../hero';
-import { HEROES } from '../mock-heroes';
+import {Component, OnInit} from '@angular/core';
+import {Hero} from '../hero';
+import {HEROES} from '../mock-heroes';
 import {HeroService} from '../hero.service';
+import {NavigationEnd, Router} from '@angular/router';
 
 @Component({
   selector: 'app-heroes',
@@ -13,30 +14,39 @@ export class HeroesComponent implements OnInit {
   // 리터럴 객체로 객체 생성
   // hero: Hero = {
   //   hero_id: 1,
-  //   name: 'Winstorm'
+  //   name: 'WinStorm'
   // }
 
   hero: Hero;
-  isSpecial: boolean;
+  isSpecial = true;
   heroes: Hero[];
   selectedHero: Hero;
 
-  constructor(private heroService: HeroService) {
-    // new로 객체 생성
-    this.hero = new Hero(1, 'Winstorm');
-    // this.hero.hero_id = 1;
-    // this.hero.name = 'Winstorm';
+  constructor(private heroService: HeroService, private router: Router) {
+    // new 로 객체 생성
+    this.hero = new Hero();
+    this.hero.hero_id = 1;
+    this.hero.name = 'WinStorm';
 
-    this.isSpecial = true;
-
-    //this.heroes = this.heroService.getHeroes();
+    // const heroService = new HeroService();
     this.heroService.getHeroes()
       .subscribe(data => this.heroes = data);
 
-    // 자식이 보내온
+    // 자식이 보내온 파라메터를 받아서 선택된 열을 스타일링
     this.heroService.refresh$
       .subscribe(hero_id => {
-        this.selectedHero = HEROES.find(item => item.hero_id === hero_id);
+        this.selectedHero = HEROES.find(item => item.hero_id === hero_id ? true : false);
+      });
+
+    // 라우터 이벤트 사용
+    this.router.events
+      .subscribe(event => {
+        // console.log(event)
+        if (event instanceof NavigationEnd) {
+          if (event.url === '/heroes') {
+            this.selectedHero = null;
+          }
+        }
       });
   }
 
@@ -45,11 +55,11 @@ export class HeroesComponent implements OnInit {
 
   onSave(e) {
     console.log(e);
-    alert('HELL:O');
+    alert('hi');
   }
 
-  onSelect(hero: Hero): void {
+  onSelect(hero: Hero) {
     this.selectedHero = hero;
+    console.log(hero);
   }
-
 }
