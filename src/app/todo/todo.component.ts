@@ -10,6 +10,8 @@ import { TodoVo } from '../domain/todo.vo';
 export class TodoComponent implements OnInit {
   todoList: TodoVo[];
   newTodo = new TodoVo();
+  // 수정시 기존값을 저장 할 수 있는 컬렉션 생성
+  tempMap = new Map<number, TodoVo>();
 
   constructor(private heroService: HeroService) { }
 
@@ -35,8 +37,16 @@ export class TodoComponent implements OnInit {
 
   modify(todo: TodoVo) {
     todo.isEdited = true;
+
+    // deep copy
+    const tempTodo = Object.assign({}, todo);
+    this.tempMap.set(todo.todo_id, tempTodo);
   }
   restore(todo: TodoVo) {
+    // 복원
+    const tempTodo = this.tempMap.get(todo.todo_id);
+    Object.assign(todo, tempTodo);
+
     todo.isEdited = false;
   }
 }
