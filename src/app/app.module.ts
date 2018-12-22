@@ -22,7 +22,9 @@ const routes: Routes = [
       {path: ':hero_id', component: HeroDetailComponent},
     ]},
   {path: 'jquery', component: JqueryComponent},
-  {path: 'todo', component: TodoComponent}
+  {path: 'todo', component: TodoComponent},
+  // lazy-loading: 접근전까지는 로딩이 되지 않음
+  {path: 'admin', loadChildren: './admin/admin.module#AdminModule'}
 ];
 
 @NgModule({
