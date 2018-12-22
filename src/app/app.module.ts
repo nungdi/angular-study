@@ -14,6 +14,7 @@ import { JqueryComponent } from './jquery/jquery.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { MydatePipe } from './mydate.pipe';
 import { HighlightDirective } from './highlight.directive';
+import { LoginComponent } from './login/login.component';
 
 const routes: Routes = [
   {path: '', component: HomeComponent},
@@ -23,6 +24,7 @@ const routes: Routes = [
     ]},
   {path: 'jquery', component: JqueryComponent},
   {path: 'todo', component: TodoComponent},
+  {path: 'login', component: LoginComponent},
   // lazy-loading: 접근전까지는 로딩이 되지 않음
   {path: 'admin', loadChildren: './admin/admin.module#AdminModule'}
 ];
@@ -36,7 +38,8 @@ const routes: Routes = [
     TodoComponent,
     JqueryComponent,
     MydatePipe,
-    HighlightDirective
+    HighlightDirective,
+    LoginComponent
   ],
   imports: [
     BrowserModule,
