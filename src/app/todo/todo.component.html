@@ -30,8 +30,8 @@
     <tr *ngIf="!todo.isEdited">
       <td>{{todo.isFinished ? '완료' : '미완료'}}</td>
       <td>{{todo.todo}}</td>
-      <td>{{todo.created}}</td>
-      <td>{{todo.updated}}</td>
+      <td>{{todo.created | mydate}}</td>
+      <td>{{todo.updated | date: 'yyyy-MM-dd a HH:mm'}}</td>
       <td>
         <button class="btn btn-success btn-sm ml-1" (click)="modify(todo)">수정</button>
         <button class="btn btn-danger btn-sm ml-1" (click)="remove(todo.todo_id)">삭제</button>
@@ -67,6 +67,6 @@
                 (pageChange)="pageChanged($event)">
 </ngb-pagination>
 
-<p>
-  TEST: {{'test' | mydate: 'bbb'}}
-</p>
+<!--<p>{{ 10000}} 원</p>
+<p>{{ 10000 | mydate: '$'}} $</p>
+<p>{{ 10000 | mydate: 'yen'}} yen</p>-->
