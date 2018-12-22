@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { AdminService } from '../admin.service';
 
 @Component({
   selector: 'app-register-hero',
@@ -9,7 +10,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 export class RegisterHeroComponent implements OnInit {
   form: FormGroup;
 
-  constructor(private fb: FormBuilder) {
+  constructor(private fb: FormBuilder, private adminService: AdminService) {
     this.form = this.fb.group(
       {
         name: [null, Validators.compose([Validators.required, Validators.minLength(3), Validators.maxLength(20)])],
@@ -35,5 +36,10 @@ export class RegisterHeroComponent implements OnInit {
       });
       return;
     }
+
+    // 서버에 등록
+    const sendForm = Object.assign({}, this.form.value);
+    this.adminService.addHero(sendForm)
+      .subscribe(body => console.log(body));
   }
 }

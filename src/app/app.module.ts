@@ -16,6 +16,8 @@ import { MydatePipe } from './mydate.pipe';
 import { HighlightDirective } from './highlight.directive';
 import { LoginComponent } from './login/login.component';
 import { AuthGuardService } from './auth-guard.service';
+import { ToasterModule } from 'angular2-toaster';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 const routes: Routes = [
   {path: '', component: HomeComponent},
@@ -44,11 +46,13 @@ const routes: Routes = [
   ],
   imports: [
     BrowserModule,
+    BrowserAnimationsModule,
     AppRoutingModule,
     FormsModule,
     RouterModule.forRoot(routes),
     HttpClientModule,
-    NgbModule // bootstrap 모듈
+    NgbModule, // bootstrap 모듈
+    ToasterModule.forRoot(),
   ],
   providers: [],
   bootstrap: [AppComponent]
