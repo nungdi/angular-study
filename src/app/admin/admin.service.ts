@@ -16,4 +16,8 @@ export class AdminService {
   addHero(hero: Hero): Observable<ResultVo> {
     return this.http.post<ResultVo>(`${environment.HOST}/api/hero`, hero, {headers: this.headers});
   }
+
+  uploadImage(formData: FormData) {
+    return this.http.post(`${environment.HOST}/api/file`, formData);
+  }
 }

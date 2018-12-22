@@ -5,4 +5,5 @@ export class Hero {
   sex: string;
   country: string;
   address?: string;
+  photo: string;
 }
