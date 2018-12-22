@@ -18,6 +18,8 @@ import { LoginComponent } from './login/login.component';
 import { AuthGuardService } from './auth-guard.service';
 import { ToasterModule } from 'angular2-toaster';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { ServiceWorkerModule } from '@angular/service-worker';
+import { environment } from '../environments/environment';
 
 const routes: Routes = [
   {path: '', component: HomeComponent},
@@ -52,7 +54,7 @@ const routes: Routes = [
     RouterModule.forRoot(routes),
     HttpClientModule,
     NgbModule, // bootstrap 모듈
-    ToasterModule.forRoot(),
+    ToasterModule.forRoot(), ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production }),
   ],
   providers: [],
   bootstrap: [AppComponent]
