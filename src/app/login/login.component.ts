@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { HeroService } from '../hero.service';
 import { MemberVo } from '../domain/member.vo';
 import { Router } from '@angular/router';
+import {AuthGuardService} from '../auth-guard.service';
 
 @Component({
   selector: 'app-login',
@@ -11,7 +12,7 @@ import { Router } from '@angular/router';
 export class LoginComponent implements OnInit {
   member = new MemberVo();
 
-  constructor(private heroService: HeroService, private router: Router) { }
+  constructor(private heroService: HeroService, private router: Router, private authService: AuthGuardService) { }
 
   ngOnInit() {
   }
