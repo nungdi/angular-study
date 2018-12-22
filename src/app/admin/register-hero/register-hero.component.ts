@@ -24,4 +24,16 @@ export class RegisterHeroComponent implements OnInit {
   ngOnInit() {
   }
 
+  register() {
+    console.log(this.form.valid);
+
+    if (!this.form.valid) {
+      // 유효성 검사
+      Object.keys(this.form.controls).forEach(key => {
+        const control = this.form.controls[key];
+        control.markAsTouched({onlySelf: true});
+      });
+      return;
+    }
+  }
 }
