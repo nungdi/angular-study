@@ -8,9 +8,11 @@ import { RouterModule, Routes } from '@angular/router';
 
 const routes: Routes = [
   {path: '', component: IndexComponent, children: [
-      {path: 'home', component: DashboardComponent},
+      {path: '', component: DashboardComponent},
       {path: 'register', component: RegisterHeroComponent},
-      {path: 'manage', component: ManageHeroComponent}
+      {path: 'manage', component: ManageHeroComponent},
+      // redirect 할 때는 요렇게..
+      // {path: '', redirectTo: '/admin/register'}
     ]}
 ];
 @NgModule({
