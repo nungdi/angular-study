@@ -5,6 +5,7 @@ import { RegisterHeroComponent } from './register-hero/register-hero.component';
 import { ManageHeroComponent } from './manage-hero/manage-hero.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { RouterModule, Routes } from '@angular/router';
+import { ReactiveFormsModule } from '@angular/forms';
 
 const routes: Routes = [
   {path: '', component: IndexComponent, children: [
@@ -19,6 +20,7 @@ const routes: Routes = [
   declarations: [IndexComponent, RegisterHeroComponent, ManageHeroComponent, DashboardComponent],
   imports: [
     CommonModule,
+    ReactiveFormsModule,
     RouterModule.forChild(routes)
   ],
   exports: [],
