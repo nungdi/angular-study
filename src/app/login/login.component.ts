@@ -23,8 +23,8 @@ export class LoginComponent implements OnInit {
         if (body.result === 0) {
           localStorage.setItem('token', body.data['token']);
           // 리다이렉션
-          if (localStorage.getItem('redirect_urul')) {
-            this.router.navigateByUrl(localStorage.getItem('redirect_urul'));
+          if (localStorage.getItem('redirect_url')) {
+            this.router.navigateByUrl(localStorage.getItem('redirect_url'));
           } else {
             this.router.navigateByUrl('/');
           }

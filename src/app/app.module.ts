@@ -15,6 +15,7 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { MydatePipe } from './mydate.pipe';
 import { HighlightDirective } from './highlight.directive';
 import { LoginComponent } from './login/login.component';
+import { AuthGuardService } from './auth-guard.service';
 
 const routes: Routes = [
   {path: '', component: HomeComponent},
@@ -22,11 +23,11 @@ const routes: Routes = [
   {path: 'heroes', component: HeroesComponent, children: [
       {path: ':hero_id', component: HeroDetailComponent},
     ]},
-  {path: 'jquery', component: JqueryComponent},
+  {path: 'jquery', component: JqueryComponent, canActivate: [AuthGuardService]},
   {path: 'todo', component: TodoComponent},
   {path: 'login', component: LoginComponent},
   // lazy-loading: 접근전까지는 로딩이 되지 않음
-  {path: 'admin', loadChildren: './admin/admin.module#AdminModule'}
+  {path: 'admin', loadChildren: './admin/admin.module#AdminModule', canLoad: [AuthGuardService]}
 ];
 
 @NgModule({
