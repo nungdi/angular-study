@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-register-hero',
@@ -12,11 +12,11 @@ export class RegisterHeroComponent implements OnInit {
   constructor(private fb: FormBuilder) {
     this.form = this.fb.group(
       {
-        name: null,
-        email: null,
-        sex: null,
-        country: null,
-        address: null
+        name: [null, Validators.compose([Validators.required, Validators.minLength(3), Validators.maxLength(20)])],
+        email: [null, Validators.compose([Validators.required, Validators.email])],
+        sex: [null, Validators.required],
+        country: [null, Validators.required],
+        address: null,
       }
     );
   }
